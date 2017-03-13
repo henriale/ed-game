@@ -26,7 +26,7 @@ void PlayState::init()
     text.setFont(font);
     text.setString(L"Testing text output in SFML");
     text.setCharacterSize(24); // in pixels
-    text.setColor(sf::Color::Yellow);
+    text.setFillColor(sf::Color::Yellow);
     text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
     map = new tmx::MapLoader("data/maps");       // all maps/tiles will be read from data/maps
@@ -123,7 +123,7 @@ void PlayState::handleEvents(cgf::Game* game)
     {
         if(event.type == sf::Event::Closed)
             game->quit();
-        if(event.type == sf::Event::KeyPressed)
+        if(event.type == sf::Event::KeyPressed){
             if(event.key.code == sf::Keyboard::S)
                 game->toggleStats();
             else if(event.key.code == sf::Keyboard::G)
@@ -134,6 +134,7 @@ void PlayState::handleEvents(cgf::Game* game)
                 else
                     phys->setGravity(0);
             }
+        }
     }
 
     dirx = diry = 0;

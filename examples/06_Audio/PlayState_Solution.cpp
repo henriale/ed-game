@@ -91,7 +91,7 @@ void PlayState::init()
     text.setFont(font);
     text.setString(L"Test!");
     text.setCharacterSize(24); // in pixels, not points!
-    text.setColor(sf::Color::Red);
+    text.setFillColor(sf::Color::Red);
     text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
     cout << "PlayState Init Successful" << endl;
@@ -158,7 +158,7 @@ void PlayState::handleEvents(cgf::Game* game)
     {
         if(event.type == sf::Event::Closed)
             game->quit();
-        if(event.type == sf::Event::KeyPressed)
+        if(event.type == sf::Event::KeyPressed){
             if(event.key.code == sf::Keyboard::S)
                 game->toggleStats();
             else if(event.key.code == sf::Keyboard::G)
@@ -171,6 +171,7 @@ void PlayState::handleEvents(cgf::Game* game)
             }
             else if(event.key.code == sf::Keyboard::Space)
                 pball->ApplyLinearImpulse(b2Vec2(0,-1200), pball->GetWorldCenter(), true);
+        }
     }
 
     int dirx, diry;

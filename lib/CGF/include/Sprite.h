@@ -32,11 +32,13 @@ public:
     Sprite();
     virtual ~Sprite();
 
-    bool load(char filename[]);
-    bool load(char filename[], int w, int h, int hSpace, int vSpace, int xIni, int yIni,
-                int column, int row, int total);
-    bool loadXML(char filename[]);
-    bool loadAnimation(char filename[]);
+    bool load(const char *filename);
+    bool load(const char *filename, int w, int h, int hSpace, int vSpace, int xIni, int yIni,
+              int column, int row, int total);
+    bool load(const char *filename, int w, int h, int hSpace, int vSpace, int xIni, int yIni,
+              int column, int row);
+    bool loadXML(const char *filename);
+    bool loadAnimation(const char *filename);
 
     void setVisible(bool vis) { visible = vis; }
     bool isVisible() { return visible; }
@@ -59,14 +61,15 @@ public:
     bool getMirror() { return mirror; }
 
     // Sprite speed
-    void setXspeed(double xspeed);
-    void setYspeed(double yspeed);
-    double getXspeed() { return xspeed; }
-    double getYspeed() { return yspeed; }
+    void setXspeed(float xspeed);
+    void setYspeed(float yspeed);
+    float getXspeed() { return xspeed; }
+    float getYspeed() { return yspeed; }
 
     // Animation control
     void setAnimation(std::string name);
     void setAnimRate(int fdelay);
+    int getAnimRate() {return framedelay;}
     void play();
     void pause();
     void stop();
@@ -88,7 +91,7 @@ public:
 
     sf::Vector2u getSize() { return sf::Vector2u(spriteW, spriteH); }
 
-    void update(double deltaTime, bool updatePos=true);
+    void update(float deltaTime, bool updatePos = true);
 
     // Basic collision checking
     bool bboxCollision(Sprite& other);
@@ -121,8 +124,7 @@ private:
     bool mirror;
 
     // Motion
-    double xspeed,yspeed;       // speed in pixels/s
-    int updateCount;            // current count of updates
+    float xspeed,yspeed;       // speed in pixels/s
 
     // Animation
     std::map<std::string, cgf::Anim> anims;
@@ -137,7 +139,16 @@ private:
     double curFrameD;           // the current frame as double
     int framecount,framedelay;  // slow down the frame animation
 
-    bool loadMultiImage(char nomeArq[], int w, int h, int hSpace, int vSpace, int xIni, int yIni, int column, int row, int total);
+    bool loadMultiImage(const char *nomeArq,
+                        int w,
+                        int h,
+                        int hSpace,
+                        int vSpace,
+                        int xIni,
+                        int yIni,
+                        int column,
+                        int row,
+                        int total);
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

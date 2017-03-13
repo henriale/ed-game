@@ -8,7 +8,7 @@
  */
 
 #include "TextureManager.h"
-#include <iostream>
+#include "Debug.h"
 
 namespace cgf
 {
@@ -22,50 +22,38 @@ TextureManager::TextureManager()
     defaultImageDir = "data";
 }
 
-TextureManager::~TextureManager()
+sf::Texture* TextureManager::findTexture(const char *nomeArq)
 {
-    //dtor
-    cout << "~TextureManager: deleting " << imgs.size() << endl;
-    map<string,sf::Texture*>::iterator it = imgs.begin();
-    while(it != imgs.end())
-    {
-        sf::Texture* tex = (*it).second;
-        delete tex;
-        it++;
-    }
-}
-
-sf::Texture* TextureManager::findTexture(char* nomeArq)
-{
-    if(imgs.find(nomeArq) == imgs.end()) {
-        cout << "New texture: " << nomeArq;
-        sf::Texture* tex = new sf::Texture();
-        if(!tex->loadFromFile(nomeArq))
-            return NULL;
-        cout << " (" << tex->getSize().x << " x " << tex->getSize().y << ")" << endl;
-        imgs[nomeArq] = tex;
+    auto find = imgs.find(nomeArq);
+    if(find == imgs.end()) {
+        DEBUG_MSG_NN("New texture: " << nomeArq);
+        TexPtr tex = TexPtr{new sf::Texture};
+        if(!tex->loadFromFile(nomeArq)) {
+            return nullptr;
+        }
+        DEBUG_MSG(" (" << tex->getSize().x << " x " << tex->getSize().y << ")");
+        
         tex->setSmooth(true);
-        return tex;
+        sf::Texture* texptr = tex.get();
+        imgs.insert(std::make_pair(nomeArq, std::move(tex)));
+        
+        return texptr;
     }
-    // Return texture id
-    cout << "Existing texture: " << nomeArq << " (" << imgs[nomeArq]->getSize().x << " x " << imgs[nomeArq]->getSize().y << ")" << endl;
-    return imgs[nomeArq];
+
+    DEBUG_MSG("Existing texture: " << nomeArq << " (" << find->second->getSize().x << " x " << find->second->getSize().y << ")");
+
+    // Return pointer to texture
+    return find->second.get();
 }
 
-void TextureManager::setDefaultImageDir(char* dir)
+void TextureManager::setDefaultImageDir(const char *dir)
 {
     defaultImageDir = dir;
 }
 
-void TextureManager::releaseTexture(char* nomeArq)
+void TextureManager::releaseTexture(const char *nomeArq)
 {
-    if(imgs.find(nomeArq) != imgs.end())
-    {
-        sf::Texture* tex = imgs[nomeArq];
-        imgs.erase(nomeArq);
-        delete tex;
-        //glDeleteTextures(1, &tex);
-    }
+    imgs.erase(nomeArq);
 }
 
 } // namespace cgf
