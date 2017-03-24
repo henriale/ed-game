@@ -18,7 +18,7 @@
 				<Linker>
 					<Add library="libZ" />
 					<Add directory="../../lib/Box2D-2.3.0/lib-Linux64" />
-					<Add directory="../../lib/SFML-2.3.2/lib-Linux64" />
+					<Add directory="../../lib/SFML-2.4.2/lib-Linux64" />
 				</Linker>
 			</Target>
 			<Target title="Windows">
@@ -31,7 +31,7 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="..\..\bin\zlib1.dll" />
+					<Add library="../../bin/zlib1.dll" />
 					<Add directory="../../lib/Box2D-2.3.0/lib-Windows-CB" />
 					<Add directory="../../lib/SFML-2.3.2/lib-Windows" />
 				</Linker>
@@ -43,7 +43,7 @@
 			<Add directory="../../lib/CGF/include/tmx" />
 			<Add directory="../../lib/CGF/include/pugixml" />
 			<Add directory="../../lib/Box2D-2.3.0/include" />
-			<Add directory="../../lib/SFML-2.3.2/include" />
+			<Add directory="../../lib/SFML-2.4.2/include" />
 		</Compiler>
 		<Linker>
 			<Add library="sfml-graphics" />
@@ -55,10 +55,10 @@
 		<Unit filename="../../lib/CGF/include/Anim.h" />
 		<Unit filename="../../lib/CGF/include/ClockHUD.h" />
 		<Unit filename="../../lib/CGF/include/Collision.h" />
+		<Unit filename="../../lib/CGF/include/Debug.h" />
 		<Unit filename="../../lib/CGF/include/EEDebugDraw3.h" />
 		<Unit filename="../../lib/CGF/include/FrameClock.h" />
 		<Unit filename="../../lib/CGF/include/Game.h" />
-		<Unit filename="../../lib/CGF/include/Debug.h" />
 		<Unit filename="../../lib/CGF/include/GameState.h" />
 		<Unit filename="../../lib/CGF/include/InputManager.h" />
 		<Unit filename="../../lib/CGF/include/MenuState.h" />
