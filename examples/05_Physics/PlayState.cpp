@@ -380,7 +380,7 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj)
 // Get a cell GID from the map (x and y in global coords)
 sf::Uint16 PlayState::getCellFromMap(uint8_t layernum, float x, float y)
 {
-    auto layers = map->GetLayers();
+    auto& layers = map->GetLayers();
     tmx::MapLayer& layer = layers[layernum];
     sf::Vector2u mapsize = map->GetMapSize();
     sf::Vector2u tilesize = map->GetMapTileSize();

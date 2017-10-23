@@ -546,7 +546,7 @@ bool PlayState::checkCollision(uint8_t layer, cgf::Game* game, Kinematic& obj)
 
 sf::Uint16 PlayState::getCellFromMap(uint8_t layernum, float x, float y)
 {
-    auto layers = map->GetLayers();
+    auto& layers = map->GetLayers();
     tmx::MapLayer& layer = layers[layernum];
     sf::Vector2u mapsize = map->GetMapSize();
     sf::Vector2u tilesize = map->GetMapTileSize();
