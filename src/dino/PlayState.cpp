@@ -11,6 +11,7 @@
 #include <cmath>
 #include "Game.h"
 #include "PlayState.h"
+#include "PauseState.h"
 #include "InputManager.h"
 
 PlayState PlayState::m_PlayState;
@@ -19,14 +20,19 @@ using namespace std;
 
 void PlayState::init()
 {
-    player.load("data/img/Char14.png");
-	player.setPosition(10,100);
+    // Smurff
+    playSprite1.load("data/img/smurf.png", 128, 128, 5, 5, 5, 5, 6, 3, 16);
+    playSprite1.setPosition(10,100);
+    playSprite1.setFrameRange(0,15);
+    playSprite1.setAnimRate(30);
+    playSprite1.play();
 
-    playSprite2.load("data/img/Char01.png");
-	playSprite2.setPosition(10,300);
-
-    playSprite3.load("data/img/Char01.png");
-	playSprite3.setPosition(100,300);
+    // Dino
+    playSpriteDino.load("data/img/alex.png", 86, 94, 0, 0, 0, 0, 3, 2, 24);
+    playSpriteDino.setPosition(200,100);
+    playSpriteDino.setFrameRange(0,15);
+    playSpriteDino.setAnimRate(15);
+    playSpriteDino.play();
 
     dirx = 0; // sprite direction: right (1), left (-1)
     diry = 0; // down (1), up (-1)
@@ -67,6 +73,8 @@ void PlayState::handleEvents(cgf::Game* game)
     {
         if(event.type == sf::Event::Closed)
             game->quit();
+        if(event.key.code == sf::Keyboard::P)
+            game->pushState(PauseState::instance());
     }
 
     dirx = diry = 0;
@@ -92,18 +100,14 @@ void PlayState::handleEvents(cgf::Game* game)
 
 void PlayState::update(cgf::Game* game)
 {
-    float x = player.getPosition().x;
-    float y = player.getPosition().y;
-    x += dirx*5;
-    y += diry*5;
-    player.setPosition(x,y);
-    player.update(game->getUpdateInterval());
+    playSprite1.update(game->getUpdateInterval());
+    playSpriteDino.update(game->getUpdateInterval());
 }
 
 void PlayState::draw(cgf::Game* game)
 {
     screen = game->getScreen();
-    screen->draw(player);
-    screen->draw(playSprite2);
-    screen->draw(playSprite3);
+    screen->draw(playSprite1);
+    screen->draw(playSpriteDino);
 }
+

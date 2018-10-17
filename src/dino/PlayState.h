@@ -43,6 +43,7 @@ class PlayState : public cgf::GameState
     static PlayState m_PlayState;
 
     int dirx, diry;
+    cgf::Sprite player;
     cgf::Sprite playSprite1;
     cgf::Sprite playSpriteDino;
     sf::RenderWindow* screen;

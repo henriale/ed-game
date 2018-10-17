@@ -1,20 +1,20 @@
 /*
- *  PlayState.h
- *  Normal "play" state
+ *  PauseState.h
+ *  Normal "pause" state
  *
  *  Created by Marcelo Cohen on 08/13.
  *  Copyright 2013 PUCRS. All rights reserved.
  *
  */
 
-#ifndef PLAY_STATE_H_
-#define PLAY_STATE_H_
+#ifndef PAUSE_STATE_H_
+#define PAUSE_STATE_H_
 
 #include "GameState.h"
 #include "Sprite.h"
 #include "InputManager.h"
 
-class PlayState : public cgf::GameState
+class PauseState : public cgf::GameState
 {
     public:
 
@@ -29,24 +29,21 @@ class PlayState : public cgf::GameState
     void draw(cgf::Game* game);
 
     // Implement Singleton Pattern
-    static PlayState* instance()
+    static PauseState* instance()
     {
-        return &m_PlayState;
+        return &m_PauseState;
     }
 
     protected:
 
-    PlayState() {}
+    PauseState() {}
 
     private:
 
-    static PlayState m_PlayState;
+    static PauseState m_PauseState;
 
-    int dirx, diry;
-    cgf::Sprite playSprite1;
-    cgf::Sprite playSpriteDino;
+    cgf::Sprite msg;
     sf::RenderWindow* screen;
-    cgf::InputManager* im;
 };
 
 #endif

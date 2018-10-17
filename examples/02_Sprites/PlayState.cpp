@@ -19,8 +19,19 @@ using namespace std;
 
 void PlayState::init()
 {
-    playSprite1.load("data/img/Char14.png");
+    // Smurff
+    playSprite1.load("data/img/smurf.png", 128, 128, 5, 5, 5, 5, 6, 3, 16);
     playSprite1.setPosition(10,100);
+    playSprite1.setFrameRange(0,15);
+    playSprite1.setAnimRate(30);
+    playSprite1.play();
+
+    // Dino
+    playSpriteDino.load("data/img/dino-trex.png", 86, 94, 1, 1, 1, 1, 6, 1, 16);
+    playSpriteDino.setPosition(200,100);
+    playSpriteDino.setFrameRange(0,15);
+    playSpriteDino.setAnimRate(15);
+    playSpriteDino.play();
 
     dirx = 0; // direção do sprite: para a direita (1), esquerda (-1)
     diry = 0; // baixo (1), cima (-1)
@@ -91,10 +102,12 @@ void PlayState::handleEvents(cgf::Game* game)
 void PlayState::update(cgf::Game* game)
 {
     playSprite1.update(game->getUpdateInterval());
+    playSpriteDino.update(game->getUpdateInterval());
 }
 
 void PlayState::draw(cgf::Game* game)
 {
     screen = game->getScreen();
     screen->draw(playSprite1);
+    screen->draw(playSpriteDino);
 }
