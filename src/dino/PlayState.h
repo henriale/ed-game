@@ -13,6 +13,7 @@
 #include "GameState.h"
 #include "Sprite.h"
 #include "InputManager.h"
+#include <tmx/MapLoader.h>
 
 class PlayState : public cgf::GameState
 {
@@ -27,6 +28,11 @@ class PlayState : public cgf::GameState
     void handleEvents(cgf::Game* game);
     void update(cgf::Game* game);
     void draw(cgf::Game* game);
+
+    tmx::MapLoader* map;
+
+    // Centers the camera on the player position
+    void centerMapOnPlayer();
 
     // Implement Singleton Pattern
     static PlayState* instance()

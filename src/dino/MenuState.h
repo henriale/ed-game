@@ -39,6 +39,9 @@ class MenuState : public cgf::GameState
 
     private:
 
+    sf::Font font;
+    sf::Text text;
+
     static MenuState m_MenuState;
 
     cgf::Sprite menuSprite;

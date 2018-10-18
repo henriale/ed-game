@@ -12,11 +12,6 @@
 #include "InputManager.h"
 #include "MenuState.h"
 #include "PlayState.h"
-//#include "PlayMap.h"
-//#include "PlayMapTop.h"
-//#include "PlayMapAI.h"
-//#include "PlayPhysics.h"
-//#include "PlayMapPhysics.h"
 
 MenuState MenuState::m_MenuState;
 
@@ -25,6 +20,18 @@ using namespace std;
 void MenuState::init()
 {
     menuSprite.load("data/img/menu.png"); // load menu state bitmap
+
+    if (!font.loadFromFile("data/fonts/arial.ttf"))
+    {
+        cout << "Cannot load arial.ttf font!" << endl;
+        exit(1);
+    }
+    text.setFont(font);
+    text.setString(L"PUCRS - FACIN\nEntretenimento Digital\nT-Rex Game\n\nAcione a barra de espaco para iniciar o jogo");
+    text.setCharacterSize(24); // in pixels
+    text.setColor(sf::Color::White);
+    text.setStyle(sf::Text::Bold);
+
     cout << "MenuState Init Successful" << endl;
 }
 
@@ -64,11 +71,6 @@ void MenuState::handleEvents(cgf::Game* game)
                 game->changeState(PlayState::instance());
             if(event.key.code == sf::Keyboard::Escape)
                 game->quit();
-            //game->changeState(PlayMap::instance());
-            //game->changeState(PlayMapTop::instance());
-            //game->changeState(PlayMapAI::instance());
-            //game->changeState(PlayPhysics::instance());
-            //game->changeState(PlayMapPhysics::instance());
             break;
 
             // we don't process other types of events
@@ -85,7 +87,7 @@ void MenuState::update(cgf::Game* game)
 void MenuState::draw(cgf::Game *game)
 {
     menuSprite.setPosition(50,50);
-//    menuSprite->draw(game->getScreen());
-    game->getScreen()->draw(menuSprite);
+    sf::RenderWindow* screen = game->getScreen();
+    screen->draw(text);
 }
 

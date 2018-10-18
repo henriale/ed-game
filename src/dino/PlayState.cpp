@@ -20,18 +20,20 @@ using namespace std;
 
 void PlayState::init()
 {
-    // Smurff
-    playSprite1.load("data/img/smurf.png", 128, 128, 5, 5, 5, 5, 6, 3, 16);
-    playSprite1.setPosition(10,100);
-    playSprite1.setFrameRange(0,15);
-    playSprite1.setAnimRate(30);
-    playSprite1.play();
+    map = new tmx::MapLoader("data/maps");       // todos os mapas/tilesets serão lidos de data/maps
+    map->Load("dungeon-tilesets2.tmx");
 
-    // Dino
-    playSpriteDino.load("data/img/alex.png", 86, 94, 0, 0, 0, 0, 3, 2, 24);
-    playSpriteDino.setPosition(200,100);
+    // Smurff
+    playSpriteDino.load("data/img/smurf.png", 128, 128, 5, 5, 5, 5, 6, 3, 16);
+    playSpriteDino.setPosition(10,100);
     playSpriteDino.setFrameRange(0,15);
-    playSpriteDino.setAnimRate(15);
+    playSpriteDino.setAnimRate(30);
+
+    // DINO
+    //playSpriteDino.load("data/img/sprite-dino.png", 448, 477, 0, 0, 30, 10, 4, 4, 16);
+    //playSpriteDino.setPosition(200,100);
+    //playSpriteDino.setFrameRange(0,15);
+    //playSpriteDino.setAnimRate(15);
     playSpriteDino.play();
 
     dirx = 0; // sprite direction: right (1), left (-1)
@@ -50,8 +52,36 @@ void PlayState::init()
 	cout << "PlayState: Init" << endl;
 }
 
+void PlayState::centerMapOnPlayer()
+{
+    sf::View view = screen->getView();
+    sf::Vector2u mapsize = map->GetMapSize();
+    sf::Vector2f viewsize = view.getSize();
+    viewsize.x /= 2;
+    viewsize.y /= 2;
+    sf::Vector2f pos = playSpriteDino.getPosition();
+
+    float panX = viewsize.x; // minimum pan
+    if(pos.x >= viewsize.x)
+        panX = pos.x;
+
+    if(panX >= mapsize.x - viewsize.x)
+        panX = mapsize.x - viewsize.x;
+
+    float panY = viewsize.y; // minimum pan
+    if(pos.y >= viewsize.y)
+        panY = pos.y;
+
+    if(panY >= mapsize.y - viewsize.y)
+        panY = mapsize.y - viewsize.y;
+
+    view.setCenter(sf::Vector2f(panX,panY));
+    screen->setView(view);
+}
+
 void PlayState::cleanup()
 {
+    delete map;
 	cout << "PlayState: Clean" << endl;
 }
 
@@ -100,14 +130,20 @@ void PlayState::handleEvents(cgf::Game* game)
 
 void PlayState::update(cgf::Game* game)
 {
+    screen = game->getScreen();
+
     playSprite1.update(game->getUpdateInterval());
     playSpriteDino.update(game->getUpdateInterval());
+
+    centerMapOnPlayer();
 }
 
 void PlayState::draw(cgf::Game* game)
 {
     screen = game->getScreen();
+    map->Draw(*screen);         // mapa é fundo, precisa desenhar primeiro
     screen->draw(playSprite1);
     screen->draw(playSpriteDino);
+
 }
 
