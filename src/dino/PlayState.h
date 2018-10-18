@@ -54,6 +54,8 @@ class PlayState : public cgf::GameState
     cgf::Sprite playSpriteDino;
     sf::RenderWindow* screen;
     cgf::InputManager* im;
+
+    bool isPulando;
 };
 
 #endif

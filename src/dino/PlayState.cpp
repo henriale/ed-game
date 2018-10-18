@@ -109,17 +109,21 @@ void PlayState::handleEvents(cgf::Game* game)
 
     dirx = diry = 0;
 
-    if(im->testEvent("left"))
-        dirx = -1;
+// O DINO SÓ ANDA PRA FRENTE
+//    if(im->testEvent("left"))
+//        dirx = -1;
 
     if(im->testEvent("right"))
-        dirx = 1;
+        dirx = 2;
 
-    if(im->testEvent("up"))
-        diry = -1;
+    if(im->testEvent("up")) {
+        diry = -5;
+        isPulando = true;
+    }
 
-    if(im->testEvent("down"))
-        diry = 1;
+// O DINO NAO ENTRA NO SUBTERRANEO
+//    if(im->testEvent("down"))
+//        diry = 1;
 
     if(im->testEvent("quit") || im->testEvent("rightclick"))
         game->quit();
@@ -134,10 +138,10 @@ void PlayState::update(cgf::Game* game)
 
     float x = playSpriteDino.getPosition().x;
     float y = playSpriteDino.getPosition().y;
-    x += dirx*5;
-    y += diry*5;
-    playSpriteDino.setPosition(x,y);
+    x += dirx * 5;
+    y += diry * 5;
 
+    playSpriteDino.setPosition(x,y);
     playSpriteDino.update(game->getUpdateInterval());
 
     centerMapOnPlayer();
