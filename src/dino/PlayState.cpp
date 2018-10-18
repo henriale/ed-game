@@ -21,11 +21,11 @@ using namespace std;
 void PlayState::init()
 {
     map = new tmx::MapLoader("data/maps");       // todos os mapas/tilesets serão lidos de data/maps
-    map->Load("dungeon-tilesets2.tmx");
+    map->Load("dino-world.tmx");
 
     // Smurff
     playSpriteDino.load("data/img/smurf.png", 128, 128, 5, 5, 5, 5, 6, 3, 16);
-    playSpriteDino.setPosition(10,100);
+    playSpriteDino.setPosition(10,120);
     playSpriteDino.setFrameRange(0,15);
     playSpriteDino.setAnimRate(30);
 
@@ -132,7 +132,12 @@ void PlayState::update(cgf::Game* game)
 {
     screen = game->getScreen();
 
-    playSprite1.update(game->getUpdateInterval());
+    float x = playSpriteDino.getPosition().x;
+    float y = playSpriteDino.getPosition().y;
+    x += dirx*5;
+    y += diry*5;
+    playSpriteDino.setPosition(x,y);
+
     playSpriteDino.update(game->getUpdateInterval());
 
     centerMapOnPlayer();

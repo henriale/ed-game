@@ -2342,7 +2342,7 @@
 
 1539883287 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\ed-game\lib\cgf\include\pugixml\pugiconfig.hpp
 
-1539883331 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\ed-game\src\dino\menustate.cpp
+1539889518 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\ed-game\src\dino\menustate.cpp
 	<iostream>
 	"Game.h"
 	"InputManager.h"
@@ -2371,7 +2371,7 @@
 	"Sprite.h"
 	"InputManager.h"
 
-1539888612 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\ed-game\src\dino\playstate.cpp
+1539889850 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\ed-game\src\dino\playstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
