@@ -11,6 +11,7 @@
 #include <cmath>
 #include "Game.h"
 #include "PlayState.h"
+#include "PauseState.h"
 #include "InputManager.h"
 
 PlayState PlayState::m_PlayState;
@@ -26,7 +27,7 @@ void PlayState::init()
 	playSprite2.setPosition(10,300);
 
     playSprite3.load("data/img/Char01.png");
-	playSprite3.setPosition(100,300);
+	playSprite3.setPosition(50,300);
 
     dirx = 0; // sprite direction: right (1), left (-1)
     diry = 0; // down (1), up (-1)
@@ -67,6 +68,8 @@ void PlayState::handleEvents(cgf::Game* game)
     {
         if(event.type == sf::Event::Closed)
             game->quit();
+        if(event.key.code == sf::Keyboard::P)
+            game->pushState(PauseState::instance());
     }
 
     dirx = diry = 0;

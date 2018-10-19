@@ -13,6 +13,7 @@
 #include "GameState.h"
 #include "Sprite.h"
 #include "InputManager.h"
+#include <tmx/MapLoader.h>
 
 class PlayState : public cgf::GameState
 {
@@ -27,6 +28,11 @@ class PlayState : public cgf::GameState
     void handleEvents(cgf::Game* game);
     void update(cgf::Game* game);
     void draw(cgf::Game* game);
+
+    tmx::MapLoader* map;
+
+    // Centers the camera on the player position
+    void centerMapOnPlayer();
 
     // Implement Singleton Pattern
     static PlayState* instance()
@@ -43,10 +49,18 @@ class PlayState : public cgf::GameState
     static PlayState m_PlayState;
 
     int dirx, diry;
-    cgf::Sprite playSprite1;
     cgf::Sprite playSpriteDino;
+    cgf::Sprite cactus;
     sf::RenderWindow* screen;
     cgf::InputManager* im;
+
+    bool isPulando;
+
+    // Checks collision between a sprite and a map layer
+    bool checkCollision(uint8_t layer, cgf::Game* game, cgf::Sprite* obj);
+
+    // get a cell GID from the map (x and y in world coords)
+    sf::Uint16 getCellFromMap(uint8_t layernum, float x, float y);
 };
 
 #endif
