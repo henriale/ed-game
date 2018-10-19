@@ -2925,7 +2925,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1539968666 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\menustate.h
+1539975523 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\menustate.h
 	"GameState.h"
 	"Sprite.h"
 
@@ -2963,7 +2963,7 @@
 
 1539967937 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\lib\cgf\include\pugixml\pugiconfig.hpp
 
-1539968666 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\menustate.cpp
+1539975477 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\menustate.cpp
 	<iostream>
 	"Game.h"
 	"InputManager.h"
@@ -2974,7 +2974,7 @@
 	<map>
 	<SFML/Graphics.hpp>
 
-1539968666 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.h
+1539973143 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -3005,7 +3005,7 @@
 1539967936 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\lib\cgf\include\debug.h
 	<iostream>
 
-1539968666 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\pausestate.cpp
+1539969456 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\pausestate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
@@ -3017,11 +3017,23 @@
 	"Sprite.h"
 	"InputManager.h"
 
-1539969148 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.cpp
+1539974705 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
 	"PlayState.h"
 	"PauseState.h"
+	"GameOverState.h"
 	"InputManager.h"
+
+1539975431 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\gameoverstate.cpp
+	<iostream>
+	<cmath>
+	"Game.h"
+	"GameOverState.h"
+	"PlayState.h"
+
+1539975523 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\gameoverstate.h
+	"GameState.h"
+	"Sprite.h"
 

@@ -1,57 +1,53 @@
 /*
- *  MenuState.cpp
- *  Example "menu" state
+ *  PauseState.cpp
+ *  Normal "play" state
  *
- *  Created by Marcelo Cohen on 04/11.
- *  Copyright 2011 PUCRS. All rights reserved.
+ *  Created by Marcelo Cohen on 08/13.
+ *  Copyright 2013 PUCRS. All rights reserved.
  *
  */
 
 #include <iostream>
+#include <cmath>
 #include "Game.h"
-#include "InputManager.h"
-#include "MenuState.h"
+#include "GameOverState.h"
 #include "PlayState.h"
 
-MenuState MenuState::m_MenuState;
+GameOverState GameOverState::m_GameOverState;
 
 using namespace std;
 
-void MenuState::init() {
+void GameOverState::init() {
     if(!font.loadFromFile("data/fonts/arial.ttf")) {
         cout << "Cannot load arial.ttf font!" << endl;
         exit(1);
     }
     text.setFont(font);
-    text.setString(L"PUCRS - FACIN\nEntretenimento Digital\nT-Rex Game\n\nAcione a barra de espaco para iniciar o jogo");
-    text.setCharacterSize(24); // in pixels
+    text.setString(L".:: G A M E   O V E R ::. \n Tecle [ENTER] para tentar de novo.");
+    text.setCharacterSize(22); // in pixels
     text.setColor(sf::Color::White);
     text.setStyle(sf::Text::Bold);
 
-    cout << "MenuState Init Successful" << endl;
+	cout << "GameOverState: Init" << endl;
 }
 
-void MenuState::cleanup()
-{
-    cout << "MenuState Cleanup Successful" << endl;
+void GameOverState::cleanup() {
+	cout << "GameOverState: Clean" << endl;
 }
 
-void MenuState::pause()
-{
-    cout << "MenuState Paused" << endl;
+void GameOverState::pause() {
+	cout << "GameOverState: Paused" << endl;
 }
 
-void MenuState::resume()
-{
-    cout << "MenuState Resumed" << endl;
+void GameOverState::resume() {
+	cout << "GameOverState: Resumed" << endl;
 }
 
-void MenuState::handleEvents(cgf::Game* game)
-{
+void GameOverState::handleEvents(cgf::Game* game) {
     sf::Event event;
     sf::RenderWindow* screen = game->getScreen();
 
-    while (screen->pollEvent(event))
+    while(screen->pollEvent(event))
     {
         // check the type of the event...
         switch (event.type)
@@ -63,8 +59,9 @@ void MenuState::handleEvents(cgf::Game* game)
 
             // key pressed
         case sf::Event::KeyPressed:
-            if(event.key.code == sf::Keyboard::Space)
+            if(event.key.code == sf::Keyboard::Return)
                 game->changeState(PlayState::instance());
+
             if(event.key.code == sf::Keyboard::Escape)
                 game->quit();
             break;
@@ -76,11 +73,10 @@ void MenuState::handleEvents(cgf::Game* game)
     }
 }
 
-void MenuState::update(cgf::Game* game) {
+void GameOverState::update(cgf::Game* game) {
 }
 
-void MenuState::draw(cgf::Game *game) {
+void GameOverState::draw(cgf::Game* game) {
     sf::RenderWindow* screen = game->getScreen();
     screen->draw(text);
 }
-

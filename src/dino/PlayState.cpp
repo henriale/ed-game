@@ -12,6 +12,7 @@
 #include "Game.h"
 #include "PlayState.h"
 #include "PauseState.h"
+#include "GameOverState.h"
 #include "InputManager.h"
 
 PlayState PlayState::m_PlayState;
@@ -25,16 +26,19 @@ void PlayState::init()
 
     // Smurff
     playSpriteDino.load("data/img/smurf.png", 128, 128, 5, 5, 5, 5, 6, 3, 16);
+    // DINO
+    //playSpriteDino.load("data/img/sprite-dino.png", 448, 477, 0, 0, 30, 10, 4, 4, 16);
     playSpriteDino.setPosition(10,120);
     playSpriteDino.setFrameRange(0,15);
     playSpriteDino.setAnimRate(30);
-
-    // DINO
-    //playSpriteDino.load("data/img/sprite-dino.png", 448, 477, 0, 0, 30, 10, 4, 4, 16);
-    //playSpriteDino.setPosition(200,100);
-    //playSpriteDino.setFrameRange(0,15);
-    //playSpriteDino.setAnimRate(15);
     playSpriteDino.play();
+
+    // Cactus
+    cactus.load("data/img/cactus.png", 50, 100, 0, 0, 0, 0, 1, 1);
+    cactus.setPosition(600,150);
+    cactus.setFrameRange(0,15);
+    cactus.setAnimRate(30);
+    cactus.play();
 
     dirx = 0; // sprite direction: right (1), left (-1)
     diry = 0; // down (1), up (-1)
@@ -95,12 +99,10 @@ void PlayState::resume()
 	cout << "PlayState: Resumed" << endl;
 }
 
-void PlayState::handleEvents(cgf::Game* game)
-{
+void PlayState::handleEvents(cgf::Game* game) {
     sf::Event event;
 
-    while (screen->pollEvent(event))
-    {
+    while (screen->pollEvent(event)) {
         if(event.type == sf::Event::Closed)
             game->quit();
 
@@ -145,6 +147,11 @@ void PlayState::update(cgf::Game* game)
     playSpriteDino.setPosition(x,y);
     playSpriteDino.update(game->getUpdateInterval());
 
+    if(playSpriteDino.bboxCollision(cactus)) {
+        cout << "Colisão!" << endl;
+        game->changeState(GameOverState::instance());
+    }
+
     centerMapOnPlayer();
 }
 
@@ -152,8 +159,8 @@ void PlayState::draw(cgf::Game* game)
 {
     screen = game->getScreen();
     map->Draw(*screen);         // mapa é fundo, precisa desenhar primeiro
-    screen->draw(playSprite1);
     screen->draw(playSpriteDino);
+    screen->draw(cactus);
 
 }
 

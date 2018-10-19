@@ -1,19 +1,19 @@
 /*
- *  MenuState.h
- *  Example "menu" state
+ *  PauseState.h
+ *  Normal "pause" state
  *
- *  Created by Marcelo Cohen on 04/11.
- *  Copyright 2011 PUCRS. All rights reserved.
+ *  Created by Marcelo Cohen on 08/13.
+ *  Copyright 2013 PUCRS. All rights reserved.
  *
  */
 
-#ifndef _MENU_STATE_H_
-#define _MENU_STATE_H_
+#ifndef GAME_OVER_STATE_H_
+#define GAME_OVER_STATE_H_
 
 #include "GameState.h"
 #include "Sprite.h"
 
-class MenuState : public cgf::GameState
+class GameOverState : public cgf::GameState
 {
     public:
 
@@ -28,23 +28,21 @@ class MenuState : public cgf::GameState
     void draw(cgf::Game* game);
 
     // Implement Singleton Pattern
-    static MenuState* instance()
+    static GameOverState* instance()
     {
-        return &m_MenuState;
+        return &m_GameOverState;
     }
 
     protected:
 
-    MenuState() {}
+    GameOverState() {}
 
     private:
 
+    static GameOverState m_GameOverState;
+
     sf::Font font;
     sf::Text text;
-
-    static MenuState m_MenuState;
-
 };
 
 #endif
-
