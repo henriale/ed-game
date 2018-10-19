@@ -103,6 +103,7 @@ void PlayState::handleEvents(cgf::Game* game)
     {
         if(event.type == sf::Event::Closed)
             game->quit();
+
         if(event.key.code == sf::Keyboard::P)
             game->pushState(PauseState::instance());
     }

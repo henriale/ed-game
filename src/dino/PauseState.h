@@ -42,7 +42,9 @@ class PauseState : public cgf::GameState
 
     static PauseState m_PauseState;
 
-    cgf::Sprite msg;
+    sf::Font font;
+    sf::Text text;
+
     sf::RenderWindow* screen;
 };
 
