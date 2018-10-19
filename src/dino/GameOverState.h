@@ -43,6 +43,8 @@ class GameOverState : public cgf::GameState
 
     sf::Font font;
     sf::Text text;
+
+    sf::RenderWindow* screen;
 };
 
 #endif

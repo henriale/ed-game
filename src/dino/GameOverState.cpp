@@ -27,6 +27,7 @@ void GameOverState::init() {
     text.setCharacterSize(22); // in pixels
     text.setColor(sf::Color::White);
     text.setStyle(sf::Text::Bold);
+    text.setPosition(10,10);
 
 	cout << "GameOverState: Init" << endl;
 }
@@ -77,6 +78,6 @@ void GameOverState::update(cgf::Game* game) {
 }
 
 void GameOverState::draw(cgf::Game* game) {
-    sf::RenderWindow* screen = game->getScreen();
+    screen = game->getScreen();
     screen->draw(text);
 }

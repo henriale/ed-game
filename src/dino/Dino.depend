@@ -2974,7 +2974,7 @@
 	<map>
 	<SFML/Graphics.hpp>
 
-1539973143 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.h
+1539976962 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -3017,7 +3017,7 @@
 	"Sprite.h"
 	"InputManager.h"
 
-1539974705 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.cpp
+1539977243 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\playstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
@@ -3026,14 +3026,14 @@
 	"GameOverState.h"
 	"InputManager.h"
 
-1539975431 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\gameoverstate.cpp
+1539977174 source:c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\gameoverstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"
 	"GameOverState.h"
 	"PlayState.h"
 
-1539975523 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\gameoverstate.h
+1539977163 c:\users\13104533\documents\pucrs.facin\entretenimento.digital\trex-game\src\dino\gameoverstate.h
 	"GameState.h"
 	"Sprite.h"
 
