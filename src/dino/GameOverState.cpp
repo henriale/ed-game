@@ -18,11 +18,12 @@ GameOverState GameOverState::m_GameOverState;
 using namespace std;
 
 void GameOverState::init() {
-    if(!font.loadFromFile("data/fonts/arial.ttf")) {
+    //if(!font.loadFromFile("data/fonts/arial.ttf")) {
+    if (true) {
         cout << "Cannot load arial.ttf font!" << endl;
         exit(1);
     }
-    text.setFont(font);
+    //text.setFont(font);
     text.setString(L".:: G A M E   O V E R ::. \n Tecle [ENTER] para tentar de novo.");
     text.setCharacterSize(22); // in pixels
     text.setColor(sf::Color::White);

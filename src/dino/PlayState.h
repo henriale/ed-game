@@ -54,6 +54,11 @@ class PlayState : public cgf::GameState
     sf::RenderWindow* screen;
     cgf::InputManager* im;
 
+    // audio
+    sf::SoundBuffer boingSoundBuffer;
+    sf::Sound boingSound;
+    sf::Music music;
+
     bool isPulando;
 
     // Checks collision between a sprite and a map layer

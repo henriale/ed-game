@@ -18,10 +18,7 @@ MenuState MenuState::m_MenuState;
 using namespace std;
 
 void MenuState::init() {
-    if(!font.loadFromFile("data/fonts/arial.ttf")) {
-        cout << "Cannot load arial.ttf font!" << endl;
-        exit(1);
-    }
+
     text.setFont(font);
     text.setString(L"PUCRS - FACIN\nEntretenimento Digital\nT-Rex Game\n\nAcione a barra de espaco para iniciar o jogo");
     text.setCharacterSize(24); // in pixels

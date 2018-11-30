@@ -19,10 +19,23 @@ PlayState PlayState::m_PlayState;
 
 using namespace std;
 
+// Initial setup when the screen initialises
+void PlayState::setup(cgf::Game* game)
+{
+    boingSoundBuffer.loadFromFile("data/audio/boing_spring.wav");
+    boingSound.setBuffer(boingSoundBuffer);
+    boingSound.setAttenuation(0);
+
+    music.openFromFile("data/audio/background.ogg");
+    music.setVolume(30);
+    music.setLoop(true);
+    music.play();
+}
+
 void PlayState::init()
 {
-    map = new tmx::MapLoader("data/maps");       // todos os mapas/tilesets serão lidos de data/maps
-    map->Load("dino-world.tmx");
+    //map = new tmx::MapLoader("data/maps");       // todos os mapas/tilesets serão lidos de data/maps
+    //map->Load("dino-world.tmx");
 
     // Smurff
     playSpriteDino.load("data/img/smurf.png", 128, 128, 5, 5, 5, 5, 6, 3, 16);
@@ -45,13 +58,10 @@ void PlayState::init()
 
     im = cgf::InputManager::instance();
 
-    im->addKeyInput("left", sf::Keyboard::Left);
-    im->addKeyInput("right", sf::Keyboard::Right);
     im->addKeyInput("up", sf::Keyboard::Up);
     im->addKeyInput("down", sf::Keyboard::Down);
     im->addKeyInput("quit", sf::Keyboard::Escape);
     im->addKeyInput("stats", sf::Keyboard::S);
-    im->addMouseInput("rightclick", sf::Mouse::Right);
 
 	cout << "PlayState: Init" << endl;
 }
@@ -111,19 +121,14 @@ void PlayState::handleEvents(cgf::Game* game) {
 
     dirx = diry = 0;
 
-// O DINO SÓ ANDA PRA FRENTE
-//    if(im->testEvent("left"))
-//        dirx = -1;
-
-    if(im->testEvent("right"))
-        dirx = 2;
-
     if(im->testEvent("up")) {
         diry = -5;
+        cout << "pulando" << endl;
+        boingSound.play();
         isPulando = true;
     }
 
-// O DINO NAO ENTRA NO SUBTERRANEO
+    // O DINO NAO ENTRA NO SUBTERRANEO
     if(im->testEvent("down"))
         diry = 1;
 
@@ -141,13 +146,15 @@ void PlayState::update(cgf::Game* game)
     if(checkCollision(0, game, &playSpriteDino))
         cout << "Colisão!" << endl;
 
-    float x = playSpriteDino.getPosition().x;
-    float y = playSpriteDino.getPosition().y;
-    x += dirx * 5;
-    y += diry * 5;
+    float x = cactus.getPosition().x;
+    x = x - dirx * 5;
 
-    playSpriteDino.setPosition(x,y);
-    playSpriteDino.update(game->getUpdateInterval());
+    if (x < 0) {
+        x = 600; // move cactus para o fim da tela
+    }
+
+    cactus.setPosition(x,170);
+    cactus.update(game->getUpdateInterval());
 
     if(playSpriteDino.bboxCollision(cactus)) {
         cout << "Colisão!" << endl;

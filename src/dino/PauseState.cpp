@@ -18,10 +18,7 @@ PauseState PauseState::m_PauseState;
 using namespace std;
 
 void PauseState::init() {
-    if (!font.loadFromFile("data/fonts/arial.ttf")) {
-        cout << "Cannot load arial.ttf font!" << endl;
-        exit(1);
-    }
+
     text.setFont(font);
     text.setString(L".:: P A U S E ::. \n Tecle [R] para retornar ao jogo.");
     text.setCharacterSize(22); // in pixels
